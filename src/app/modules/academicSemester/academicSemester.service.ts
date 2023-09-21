@@ -1,31 +1,19 @@
 import { Request } from 'express';
-import { CoreService } from '../../../shared/axios';
 import { IGenericResponse } from '../../../interfaces/common';
+import { CoreService as HttpService } from '../../../shared/axios';
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.post('/academic-semesters', req.body, {
+  const response: IGenericResponse = await HttpService.post('/academic-semesters', req.body, {
     headers: {
       Authorization: req.headers.authorization
     }
   });
-
   return response;
 };
 
 const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.get('/academic-semesters', {
+  const response: IGenericResponse = await HttpService.get('/academic-semesters', {
     params: req.query,
-    headers: {
-      Authorization: req.headers.authorization
-    }
-  });
-
-  return response;
-};
-
-const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
-  const { id } = req.params;
-  const response: IGenericResponse = await CoreService.get(`/academic-semesters/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -34,11 +22,22 @@ const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 };
 
 const updateOneIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const {
-    body,
-    params: { id }
-  } = req;
-  const response: IGenericResponse = await CoreService.patch(`/academic-semesters/${id}`, body, {
+  const { id } = req.params;
+  const response: IGenericResponse = await HttpService.patch(
+    `/academic-semesters/${id}`,
+    req.body,
+    {
+      headers: {
+        Authorization: req.headers.authorization
+      }
+    }
+  );
+  return response;
+};
+
+const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
+  const { id } = req.params;
+  const response: IGenericResponse = await HttpService.get(`/academic-semesters/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -48,7 +47,7 @@ const updateOneIntoDB = async (req: Request): Promise<IGenericResponse> => {
 
 const deleteByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.delete(`/academic-semesters/${id}`, {
+  const response: IGenericResponse = await HttpService.delete(`/academic-semesters/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -59,7 +58,7 @@ const deleteByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 export const AcademicSemesterService = {
   insertIntoDB,
   getAllFromDB,
-  getByIdFromDB,
   updateOneIntoDB,
+  getByIdFromDB,
   deleteByIdFromDB
 };

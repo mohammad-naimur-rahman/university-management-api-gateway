@@ -1,6 +1,6 @@
 import { Response } from 'express';
 
-interface IResponse {
+type IResponse = {
   success: boolean;
   statusCode: number;
   message?: string;
@@ -10,7 +10,7 @@ interface IResponse {
     total: number;
   };
   data?: unknown;
-}
+};
 
 const sendResponse = <T>(
   res: Response,

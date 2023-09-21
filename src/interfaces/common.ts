@@ -1,4 +1,4 @@
-export interface IGenericResponse {
+export type IGenericResponse = {
   success: boolean;
   statusCode: number;
   message: string;
@@ -8,13 +8,13 @@ export interface IGenericResponse {
     total: number;
   };
   data?: any;
-}
+};
 
-export interface IGenericErrorResponse {
+export type IGenericErrorResponse = {
   statusCode: number;
   message: string;
   errorMessages: {
     path: string;
     message: string;
   }[];
-}
+};

@@ -18,7 +18,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 
 app.use(globalExceptionHandler);
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
     message: 'API not found',

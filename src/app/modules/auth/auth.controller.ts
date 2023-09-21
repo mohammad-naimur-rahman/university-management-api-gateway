@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
-import httpStatus from 'http-status';
-import config from '../../../config';
-import sendResponse from '../../../shared/response';
 import { AuthenticationService } from './auth.service';
+import sendResponse from '../../../shared/response';
+import config from '../../../config';
+import httpStatus from 'http-status';
 
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {

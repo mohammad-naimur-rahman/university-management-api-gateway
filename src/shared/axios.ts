@@ -11,13 +11,21 @@ const HttpService = (baseUrl: string): AxiosInstance => {
   });
 
   instance.interceptors.request.use(
-    (config) => config,
-    (error) => error
+    (config) => {
+      return config;
+    },
+    (error) => {
+      return error;
+    }
   );
 
   instance.interceptors.response.use(
-    (response) => response.data,
-    (error) => Promise.reject(error)
+    (response) => {
+      return response.data;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
   );
 
   return instance;

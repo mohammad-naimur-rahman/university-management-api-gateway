@@ -23,15 +23,11 @@ const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 };
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.post(
-    `/semester-registrations`,
-    req.body,
-    {
-      headers: {
-        Authorization: req.headers.authorization
-      }
+  const response: IGenericResponse = await CoreService.post(`/semester-registrations`, req.body, {
+    headers: {
+      Authorization: req.headers.authorization
     }
-  );
+  });
   return response;
 };
 

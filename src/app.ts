@@ -14,11 +14,9 @@ app.use(cookieParser());
 
 app.use('/api/v1', routes);
 
-app.get('/', (req, res) => res.send('Hello World!'));
-
 app.use(globalExceptionHandler);
 
-app.use((req, res) => {
+app.use((req, res, next) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
     message: 'API not found',

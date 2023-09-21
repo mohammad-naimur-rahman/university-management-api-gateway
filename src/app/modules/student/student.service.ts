@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import { IGenericResponse } from '../../../interfaces/common';
-import { CoreService as HttpService, AuthService } from '../../../shared/axios';
+import { AuthService, CoreService as HttpService } from '../../../shared/axios';
 
 const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await HttpService.get('/students', {
@@ -64,7 +64,6 @@ const getStudentProfile = async (req: Request): Promise<IGenericResponse> => {
 
 const updateOneInDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  console.log(id);
   const response: IGenericResponse = await AuthService.patch(`/students/${id}`, req.body, {
     headers: {
       Authorization: req.headers.authorization

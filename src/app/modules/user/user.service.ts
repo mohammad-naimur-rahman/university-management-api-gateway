@@ -1,8 +1,8 @@
 import { Request } from 'express';
 import { FileUploadHelper } from '../../../helpers/FileUploadHelper';
-import { ICloudinaryResponse, IUploadFile } from '../../../interfaces/file';
-import { AuthService } from '../../../shared/axios';
 import { IGenericResponse } from '../../../interfaces/common';
+import { IUploadFile } from '../../../interfaces/file';
+import { AuthService } from '../../../shared/axios';
 
 const createStudent = async (req: Request) => {
   const file = req.file as IUploadFile;
